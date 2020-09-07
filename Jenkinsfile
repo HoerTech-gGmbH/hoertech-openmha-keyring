@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage("build") {
             steps {
-                sh 'mhamakedeb hoertech-openmha-keyring $(cat version) all'
+                sh 'mhamakedeb hoertech-openmha-keyring.csv $(cat version) all'
                 stash name: "deb", includes: '*.deb'
             }
         }
@@ -28,7 +28,7 @@ pipeline {
                 sh "ln *.deb deb/focal"
                 
                 // Copies the new debs to the stash of existing debs,
-                sh "make storage"
+                sh "BRANCH_NAME=master make storage"
 
                 build job:         "/hoertech-aptly/master",
                       quietPeriod: 300,
