@@ -1,0 +1,4 @@
+Architecture: all
+Section: contrib/admin
+Maintainer: openMHA Packaging Team <packaging@openmha.org>
+Description: Keyring used for signing apt.hoertech.de and aptdev.hoertech.de
