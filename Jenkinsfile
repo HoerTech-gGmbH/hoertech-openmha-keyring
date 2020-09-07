@@ -2,7 +2,7 @@
 // Copyright © 2020 HörTech gGmbH
 
 pipeline {
-    agent {label "mhadev && x86_64"}
+    agent {label "mhadev && linux && x86_64"}
     stages {
         stage("build") {
             steps {
