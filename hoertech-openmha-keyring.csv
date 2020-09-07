@@ -1,2 +1,3 @@
 openmha-packaging-2018.gpg,/etc/apt/trusted.gpg.d
+openmha-packaging-2018.gpg,/usr/share/keyrings
 README.md,/usr/share/doc/hoertech-openmha-keyring

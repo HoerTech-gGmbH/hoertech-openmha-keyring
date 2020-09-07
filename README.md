@@ -35,4 +35,5 @@ BE CAREFUL, THIS GIT REPOSITORY IS STORED PUBLICLY ON GITHUB.  NEVER UPLOAD
 THE PRIVATE PART OF A GPG KEY TO GITHUB.
 
 The debian package installs the key in directory `/etc/apt/trusted.gpg.d`
-where it will be picked up by apt automatically.
+where it will be picked up by apt automatically, as well as in directory
+`/usr/share/keyrings`, where it is of use for other purposes, like multistrap.
