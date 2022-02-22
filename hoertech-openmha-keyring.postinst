@@ -1,0 +1,1 @@
+/usr/bin/apt-key add /usr/share/keyrings/openmha-packaging-2022.gpg

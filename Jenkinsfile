@@ -1,5 +1,6 @@
 // This file is part of hoertech-openmha-keyring
 // Copyright © 2020 HörTech gGmbH
+// Copyright © 2022 Hörzentrum Oldenburg gGmbH
 
 pipeline {
     agent {label "mhadev && linux && x86_64"}
@@ -43,7 +44,7 @@ pipeline {
     // https://jenkins.io/doc/pipeline/steps/workflow-basic-steps/#-mail-%20mail
     post {
         failure {
-            mail to: 't.herzke@hoertech.de',
+            mail to: 'herzke@hz-ol.de',
                  subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
                  body: "Something is wrong with ${env.BUILD_URL}"
         }
