@@ -29,7 +29,7 @@ pipeline {
                 // Copies the new debs to the stash of existing debs,
                 sh "BRANCH_NAME=master make storage"
 
-                build job:         "/hoertech-aptly/master",
+                build job:         "/Packaging/hoertech-aptly/master",
                       quietPeriod: 300,
                       wait:        false
             }
