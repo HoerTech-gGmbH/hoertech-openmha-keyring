@@ -23,8 +23,6 @@ pipeline {
                 sh "ln *.deb deb/bionic"
                 sh "mkdir -p deb/buster"
                 sh "ln *.deb deb/buster"
-                sh "mkdir -p deb/xenial"
-                sh "ln *.deb deb/xenial"
                 sh "mkdir -p deb/focal"
                 sh "ln *.deb deb/focal"
                 
