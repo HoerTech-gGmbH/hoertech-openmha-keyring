@@ -21,8 +21,6 @@ pipeline {
                 // Publishing the deb for these systems:
                 sh "mkdir -p deb/bionic"
                 sh "ln *.deb deb/bionic"
-                sh "mkdir -p deb/buster"
-                sh "ln *.deb deb/buster"
                 sh "mkdir -p deb/focal"
                 sh "ln *.deb deb/focal"
                 
