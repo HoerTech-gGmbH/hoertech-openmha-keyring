@@ -1,2 +1,11 @@
 #!/bin/bash
-/usr/bin/apt-key add /usr/share/keyrings/openmha-packaging-2022.gpg
+
+# Remove previous version(s) of our apt repo key.
+/usr/bin/apt-key del B7D6CDF547DA4ABD
+
+# From Debian 11 and Ubuntu 22.04 onwards, apt keys should only be installed in
+# /etc/apt/trusted.gpg.d/, and apt-key should no longer be used for adding the
+# key.  The permitted location for Debian 11 and Ubuntu 22.04 also works for
+# Ubuntu 18.04, Ubuntu 20.04, and Debian 10.
+/bin/cp /usr/share/keyrings/openmha-packaging-2022.gpg \
+        /etc/apt/trusted.gpg.d/openmha-packaging.gpg

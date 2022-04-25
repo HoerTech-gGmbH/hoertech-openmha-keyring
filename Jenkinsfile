@@ -23,7 +23,11 @@ pipeline {
                 sh "ln *.deb deb/bionic"
                 sh "mkdir -p deb/focal"
                 sh "ln *.deb deb/focal"
-                
+                sh "mkdir -p deb/jammy"
+                sh "ln *.deb deb/jammy"
+                sh "mkdir -p deb/bullseye"
+                sh "ln *.deb deb/bullseye"
+
                 // Copies the new debs to the stash of existing debs,
                 sh "BRANCH_NAME=master make storage"
 
