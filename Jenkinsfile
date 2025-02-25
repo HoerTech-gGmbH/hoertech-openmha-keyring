@@ -1,18 +1,19 @@
 // This file is part of hoertech-openmha-keyring
 // Copyright © 2020 HörTech gGmbH
-// Copyright © 2022 Hörzentrum Oldenburg gGmbH
+// Copyright © 2022 2025 Hörzentrum Oldenburg gGmbH
 
 pipeline {
-    agent {
-        docker {
-            image "hoertech/docker-buildenv:mha_x86_64-linux-gcc-13"
-            label "docker_x86_64"
-            alwaysPull true
-            args "-v /home/u:/home/u --hostname docker"
-        }
-    }
+    agent {label "pipeline"}
     stages {
         stage("build") {
+            agent {
+                docker {
+                    image "hoertech/docker-buildenv:mha_x86_64-linux-gcc-13"
+                    label "docker_x86_64"
+                    alwaysPull true
+                    args "-v /home/u:/home/u --hostname docker"
+                }
+            }
             steps {
                 sh 'mhamakedeb hoertech-openmha-keyring.csv $(cat version) all'
                 stash name: "deb", includes: '*.deb'
@@ -26,14 +27,16 @@ pipeline {
                 archiveArtifacts "*.deb"
 
                 // Publishing the deb for these systems:
-                sh "mkdir -p deb/bionic"
-                sh "ln *.deb deb/bionic"
                 sh "mkdir -p deb/focal"
                 sh "ln *.deb deb/focal"
                 sh "mkdir -p deb/jammy"
                 sh "ln *.deb deb/jammy"
+                sh "mkdir -p deb/noble"
+                sh "ln *.deb deb/noble"
                 sh "mkdir -p deb/bullseye"
                 sh "ln *.deb deb/bullseye"
+                sh "mkdir -p deb/buster"
+                sh "ln *.deb deb/buster"
 
                 // Copies the new debs to the stash of existing debs,
                 sh "BRANCH_NAME=master make storage"
