@@ -3,7 +3,14 @@
 // Copyright © 2022 Hörzentrum Oldenburg gGmbH
 
 pipeline {
-    agent {label "mhadev && linux && x86_64"}
+    agent {
+        docker {
+            image "hoertech/docker-buildenv:mha_x86_64-linux-gcc-13"
+            label "docker_x86_64"
+            alwaysPull true
+            args "-v /home/u:/home/u --hostname docker"
+        }
+    }
     stages {
         stage("build") {
             steps {
@@ -12,14 +19,7 @@ pipeline {
             }
         }
         stage("store debian packages for apt") {
-            agent {
-                docker {
-                    image "hoertech/docker-buildenv:mha_x86_64-linux-gcc-13"
-                    label "docker_x86_64"
-                    alwaysPull true
-                    args "-v /home/u:/home/u --hostname docker"
-                }
-            }
+            agent {label "aptly"}
             steps {
                 // receive all deb packages from openmha build
                 unstash "deb"
