@@ -30,7 +30,7 @@ Then, it triggers an upload of the package to apt.hoertech.de.
 Jenkins job /Software Packaging and Distribution/hoertech-openmha-keyring
 was configured to execute this Jenkinsfile.
 
-The openmha packaging key from 2022 expires 2025-02-21.
+The openmha packaging key from 2025 expires 2030-02-24.
 Add a new key before then, as a file, and update the key file name in files
 hoertech-openmha-keyring.csv and hoertech-openmha-keyring.postinst.
 Also update the version in file `version` to reflect the year when the
@@ -41,6 +41,5 @@ THE PRIVATE PART OF A GPG KEY TO GITHUB.
 The debian package installs the key in directory `/usr/share/keyrings`,
 where it expected by multistrap.
 
-The postinstall script of this debian package calls `apt-key add` on the
-key, thereby adding it to the apt database, updating public keys which
-expire earlier.
+The postinstall script of this debian package deletes previous versions of
+our key and then copies the new key to the directory `/etc/apt/trusted.gpg.d/`.
